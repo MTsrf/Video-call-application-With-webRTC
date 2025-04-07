@@ -23,7 +23,7 @@ interface Room {
 const app = express();
 app.use(cors());
 
-app.get("/", (req: Request, res: Response) => {
+app.get(/(.*)/, (req: Request, res: Response) => {
   res.send("Hello World");
 });
 
