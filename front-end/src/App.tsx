@@ -1,4 +1,4 @@
-import React, { lazy } from "react";
+import { lazy } from "react";
 import LazyLoading from "./components/LazyLoading";
 const HomePage = LazyLoading(lazy(() => import("./views/HomePage")));
 import LoginPage from "./views/LoginPage";

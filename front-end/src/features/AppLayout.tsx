@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Button from "../components/Button";
 import { useAuth } from "../hooks/useAuth";
 import { Divider } from "antd";
@@ -31,6 +32,7 @@ const AppLayout = () => {
   const peerConnectionRef = useRef<RTCPeerConnection | null>(null);
   const localStreamRef = useRef<MediaStream | null>(null);
 
+  console.log(otherSocketId);
   const iceServers: RTCConfiguration = {
     iceServers: [
       { urls: "stun:stun.l.google.com:19302" },
@@ -125,7 +127,7 @@ const AppLayout = () => {
     socket.on(
       "offer",
       async (offer: RTCSessionDescriptionInit, offererId: string) => {
-        console.log("Received offer");
+        console.log("Received offer", offererId);
         try {
           await peerConnection.setRemoteDescription(
             new RTCSessionDescription(offer)
@@ -142,7 +144,7 @@ const AppLayout = () => {
     socket.on(
       "answer",
       async (answer: RTCSessionDescriptionInit, answererId: string) => {
-        console.log("Received answer");
+        console.log("Received answer", answererId);
         try {
           await peerConnection.setRemoteDescription(
             new RTCSessionDescription(answer)
