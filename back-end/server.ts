@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Request, Response } from "express";
 import http from "http";
 import { Server } from "socket.io";
 import cors from "cors";
@@ -22,6 +22,10 @@ interface Room {
 
 const app = express();
 app.use(cors());
+
+app.get("/", (req: Request, res: Response) => {
+  res.send("Hello World");
+});
 
 const server = http.createServer(app);
 const io = new Server(server, {
